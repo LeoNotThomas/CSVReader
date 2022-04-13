@@ -19,6 +19,7 @@
 		2142E0FC2804395500C9E9AB /* MapCSVToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0FB2804395500C9E9AB /* MapCSVToData.swift */; };
 		2142E101280451E400C9E9AB /* persons.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2142E100280451E400C9E9AB /* persons.csv */; };
 		2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1022805631200C9E9AB /* CSVDataSource.swift */; };
+		2142E1052807455C00C9E9AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1042807455C00C9E9AB /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2142E0FB2804395500C9E9AB /* MapCSVToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCSVToData.swift; sourceTree = "<group>"; };
 		2142E100280451E400C9E9AB /* persons.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = persons.csv; sourceTree = "<group>"; };
 		2142E1022805631200C9E9AB /* CSVDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataSource.swift; sourceTree = "<group>"; };
+		2142E1042807455C00C9E9AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				2142E0F72804344500C9E9AB /* Data */,
 				2142E0CB2802B6DD00C9E9AB /* CSVReaderApp.swift */,
 				2142E0CD2802B6DD00C9E9AB /* CSVView.swift */,
+				2142E1042807455C00C9E9AB /* MainView.swift */,
 				2142E0CF2802B6DD00C9E9AB /* Assets.xcassets */,
 				2142E0D12802B6DD00C9E9AB /* Preview Content */,
 			);
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2142E0FA280434F000C9E9AB /* FileReader.swift in Sources */,
+				2142E1052807455C00C9E9AB /* MainView.swift in Sources */,
 				2142E0FC2804395500C9E9AB /* MapCSVToData.swift in Sources */,
 				2142E0CE2802B6DD00C9E9AB /* CSVView.swift in Sources */,
 				2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */,

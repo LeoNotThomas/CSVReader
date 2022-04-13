@@ -32,5 +32,27 @@ class CSVReaderTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
+    func testReadCSV() {
+        let path = Bundle(for: type(of: self)).path(forResource: "persons", ofType: "csv")
+        guard let result = try? FileReader.excecute(file: path!) else {
+            XCTAssertTrue(false, "Can't read data.")
+            return
+        }
+        XCTAssertTrue(result.count == 8, "Wrong Count")
+    }
+    
+    func testMapCSV() {
+        let csv = ["Name;Age;City",
+                   "Peter;42;New York",
+                   "Jaques;66;Paris",
+                   "Stephanie;47;Stockholm;Dänemark"
+        ]
+        let result = MapCSVToData.excecute(csvArray: csv)
+        XCTAssertTrue(result.maxCounts.count == 4, "Count Columns Incorrect")
+        let cmp = [9, 3, 9, 8]
+        for i in 0...result.maxCounts.count - 1 {
+            XCTAssertTrue(result.maxCounts[i] == cmp[i], "Wrong maximum found")
+        }
+    }
 }

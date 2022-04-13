@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		2142E0CC2802B6DD00C9E9AB /* CSVReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0CB2802B6DD00C9E9AB /* CSVReaderApp.swift */; };
-		2142E0CE2802B6DD00C9E9AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0CD2802B6DD00C9E9AB /* ContentView.swift */; };
+		2142E0CE2802B6DD00C9E9AB /* CSVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0CD2802B6DD00C9E9AB /* CSVView.swift */; };
 		2142E0D02802B6DD00C9E9AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2142E0CF2802B6DD00C9E9AB /* Assets.xcassets */; };
 		2142E0D32802B6DD00C9E9AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2142E0D22802B6DD00C9E9AB /* Preview Assets.xcassets */; };
 		2142E0DD2802B6DE00C9E9AB /* CSVReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0DC2802B6DE00C9E9AB /* CSVReaderTests.swift */; };
 		2142E0E72802B6DE00C9E9AB /* CSVReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0E62802B6DE00C9E9AB /* CSVReaderUITests.swift */; };
 		2142E0E92802B6DE00C9E9AB /* CSVReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0E82802B6DE00C9E9AB /* CSVReaderUITestsLaunchTests.swift */; };
+		2142E0F62802B7B400C9E9AB /* persons.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2142E0F52802B7B400C9E9AB /* persons.csv */; };
+		2142E0FA280434F000C9E9AB /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0F9280434F000C9E9AB /* FileReader.swift */; };
+		2142E0FC2804395500C9E9AB /* MapCSVToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E0FB2804395500C9E9AB /* MapCSVToData.swift */; };
+		2142E101280451E400C9E9AB /* persons.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2142E100280451E400C9E9AB /* persons.csv */; };
+		2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1022805631200C9E9AB /* CSVDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +41,7 @@
 /* Begin PBXFileReference section */
 		2142E0C82802B6DD00C9E9AB /* CSVReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSVReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2142E0CB2802B6DD00C9E9AB /* CSVReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReaderApp.swift; sourceTree = "<group>"; };
-		2142E0CD2802B6DD00C9E9AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2142E0CD2802B6DD00C9E9AB /* CSVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVView.swift; sourceTree = "<group>"; };
 		2142E0CF2802B6DD00C9E9AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2142E0D22802B6DD00C9E9AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2142E0D82802B6DE00C9E9AB /* CSVReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSVReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +49,11 @@
 		2142E0E22802B6DE00C9E9AB /* CSVReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSVReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2142E0E62802B6DE00C9E9AB /* CSVReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReaderUITests.swift; sourceTree = "<group>"; };
 		2142E0E82802B6DE00C9E9AB /* CSVReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2142E0F52802B7B400C9E9AB /* persons.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = persons.csv; sourceTree = "<group>"; };
+		2142E0F9280434F000C9E9AB /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		2142E0FB2804395500C9E9AB /* MapCSVToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCSVToData.swift; sourceTree = "<group>"; };
+		2142E100280451E400C9E9AB /* persons.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = persons.csv; sourceTree = "<group>"; };
+		2142E1022805631200C9E9AB /* CSVDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +104,10 @@
 		2142E0CA2802B6DD00C9E9AB /* CSVReader */ = {
 			isa = PBXGroup;
 			children = (
+				2142E0F8280434AA00C9E9AB /* Facade */,
+				2142E0F72804344500C9E9AB /* Data */,
 				2142E0CB2802B6DD00C9E9AB /* CSVReaderApp.swift */,
-				2142E0CD2802B6DD00C9E9AB /* ContentView.swift */,
+				2142E0CD2802B6DD00C9E9AB /* CSVView.swift */,
 				2142E0CF2802B6DD00C9E9AB /* Assets.xcassets */,
 				2142E0D12802B6DD00C9E9AB /* Preview Content */,
 			);
@@ -113,6 +125,7 @@
 		2142E0DB2802B6DE00C9E9AB /* CSVReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				2142E0FD28044F9F00C9E9AB /* TestData */,
 				2142E0DC2802B6DE00C9E9AB /* CSVReaderTests.swift */,
 			);
 			path = CSVReaderTests;
@@ -125,6 +138,32 @@
 				2142E0E82802B6DE00C9E9AB /* CSVReaderUITestsLaunchTests.swift */,
 			);
 			path = CSVReaderUITests;
+			sourceTree = "<group>";
+		};
+		2142E0F72804344500C9E9AB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2142E0F52802B7B400C9E9AB /* persons.csv */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2142E0F8280434AA00C9E9AB /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				2142E1022805631200C9E9AB /* CSVDataSource.swift */,
+				2142E0F9280434F000C9E9AB /* FileReader.swift */,
+				2142E0FB2804395500C9E9AB /* MapCSVToData.swift */,
+			);
+			path = Facade;
+			sourceTree = "<group>";
+		};
+		2142E0FD28044F9F00C9E9AB /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				2142E100280451E400C9E9AB /* persons.csv */,
+			);
+			path = TestData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2142E0F62802B7B400C9E9AB /* persons.csv in Resources */,
 				2142E0D32802B6DD00C9E9AB /* Preview Assets.xcassets in Resources */,
 				2142E0D02802B6DD00C9E9AB /* Assets.xcassets in Resources */,
 			);
@@ -240,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2142E101280451E400C9E9AB /* persons.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +298,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2142E0CE2802B6DD00C9E9AB /* ContentView.swift in Sources */,
+				2142E0FA280434F000C9E9AB /* FileReader.swift in Sources */,
+				2142E0FC2804395500C9E9AB /* MapCSVToData.swift in Sources */,
+				2142E0CE2802B6DD00C9E9AB /* CSVView.swift in Sources */,
+				2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */,
 				2142E0CC2802B6DD00C9E9AB /* CSVReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +466,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -450,6 +495,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

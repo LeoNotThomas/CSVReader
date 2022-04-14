@@ -15,9 +15,9 @@ struct CSVRow: Hashable {
     }
     private (set) var row: [String] = [String]()
     
-    static func excecute(rows: String) -> CSVRow {
+    static func excecute(row: String) -> CSVRow {
         var csvRow = CSVRow()
-        csvRow.row = rows.components(separatedBy: csvRow.seperator)
+        csvRow.row = row.components(separatedBy: csvRow.seperator)
         for value in csvRow.row {
             csvRow.columnCounts.append(value.count)
         }
@@ -60,7 +60,7 @@ class MapCSVToData {
     static func excecute(csvArray: [String]) -> CSVData {
         var csvRows = [CSVRow]()
         for row in csvArray {
-            let csvRow = CSVRow.excecute(rows: row)
+            let csvRow = CSVRow.excecute(row: row)
             csvRows.append(csvRow)
         }
         return CSVData.excecute(rows: csvRows)

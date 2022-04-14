@@ -12,36 +12,40 @@ struct CSVView: View {
     private let pageEntrys = 3
     var page: Int
     var body: some View {
-        Form {
+        List {
             let rows = getPage()
             ForEach(rows, id: \.self) { csvRow in
-                HStack(alignment: .bottom, spacing: 10) {
+                HStack(alignment: .bottom, spacing: 0) {
                     ForEach(csvRow.row, id: \.self) { text in
-                        Text(text)
-                            .frame(width: 100,  alignment: .leading)
-                            .background(.red)
+                        GeometryReader { geo in
+                            Text(text)
+                        }
                     }
                 }
             }
             if rows.last != csvData?.rows.last {
                 NavigationLink(destination: CSVView(page: page + 1)) {
-                Text("Choose Tails")
+                Text("Next Page")
                 }
             }
         }
         .navigationTitle("Page: \(page)")
+        .padding()
     }
     
     private func getPage() -> [CSVRow] {
         var rows = [CSVRow]()
+        guard let csvData = csvData, !csvData.rows.isEmpty else {
+            return rows
+        }
         for i in (page * pageEntrys)...(page * pageEntrys) + pageEntrys - 1 {
-            if let row = csvData?.rows[i] {
-                rows.append(row)
-                if row == csvData?.rows.last {
-                    break
-                }
+            let row = csvData.rows[i]
+            rows.append(row)
+            if row == csvData.rows.last {
+                break
             }
         }
+        rows.insert(csvData.titleRow, at: 0)
         return rows
     }
     

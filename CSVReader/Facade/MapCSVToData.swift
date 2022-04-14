@@ -27,11 +27,19 @@ struct CSVRow: Hashable {
 
 struct CSVData {
     private (set) var maxCounts = [Int]()
-    private (set) var rows: [CSVRow]!
+    private (set) var rows: [CSVRow]! {
+        didSet {
+            titleRow = rows[0]
+            rows.remove(at: 0)
+        }
+    }
+    private (set) var titleRow: CSVRow!
+    private (set) var columns = 0
     static func excecute(rows: [CSVRow]) -> CSVData {
         var csvData = CSVData()
         csvData.rows = rows
         for row in rows {
+            csvData.columns = max(csvData.columns, row.columns)
             if csvData.maxCounts.isEmpty {
                 csvData.maxCounts = row.columnCounts
                 continue

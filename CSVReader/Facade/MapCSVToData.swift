@@ -10,7 +10,7 @@ import Foundation
 struct CSVRow: Hashable {
     private var seperator = ";"
     private (set) var columnCounts = [Int]()
-    var columns: Int {
+    var columnCount: Int {
         return columnCounts.count
     }
     private (set) var row: [String] = [String]()
@@ -34,17 +34,21 @@ struct CSVData {
         }
     }
     private (set) var titleRow: CSVRow!
-    private (set) var columns = 0
-    static func excecute(rows: [CSVRow]) -> CSVData {
-        var csvData = CSVData()
+    private (set) var columnsCount = 0
+    var rowCount: Int {
+        return rows.count
+    }
+    var pageSize: Int
+    static func excecute(rows: [CSVRow], pageSize: Int) -> CSVData {
+        var csvData = CSVData(pageSize: pageSize)
         csvData.rows = rows
         for row in rows {
-            csvData.columns = max(csvData.columns, row.columns)
+            csvData.columnsCount = max(csvData.columnsCount, row.columnCount)
             if csvData.maxCounts.isEmpty {
                 csvData.maxCounts = row.columnCounts
                 continue
             }
-            for i in 0...row.columns - 1 {
+            for i in 0...row.columnCount - 1 {
                 if i == csvData.maxCounts.count {
                     csvData.maxCounts.append(row.columnCounts[i])
                     continue
@@ -54,15 +58,31 @@ struct CSVData {
         }
         return csvData
     }
+    
+    func getPage(pageNumber: Int) -> [CSVRow] {
+        var page = [CSVRow]()
+        guard !rows.isEmpty else {
+            return rows
+        }
+        for i in (pageNumber * pageSize)...(pageNumber * pageSize) + pageSize - 1 {
+            let row = rows[i]
+            page.append(row)
+            if row == rows.last {
+                break
+            }
+        }
+        page.insert(titleRow, at: 0)
+        return page
+    }
 }
 
 class MapCSVToData {
-    static func excecute(csvArray: [String]) -> CSVData {
+    static func excecute(csvArray: [String], pageSize: Int) -> CSVData {
         var csvRows = [CSVRow]()
         for row in csvArray {
             let csvRow = CSVRow.excecute(row: row)
             csvRows.append(csvRow)
         }
-        return CSVData.excecute(rows: csvRows)
+        return CSVData.excecute(rows: csvRows, pageSize: pageSize)
     }
 }

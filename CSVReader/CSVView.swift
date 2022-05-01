@@ -30,7 +30,9 @@ struct CSVView: View {
                         ForEach(csvRow.row, id: \.self) { text in
                             GeometryReader { geo in
                                 Text(text)
+                                    .background(.blue)
                             }
+                            .background(.red)
                         }
                     }
                 }

@@ -12,6 +12,7 @@ struct MainView: View {
         NavigationView {
             CSVView()
         }
+        .navigationViewStyle(.stack)
         
     }
 }

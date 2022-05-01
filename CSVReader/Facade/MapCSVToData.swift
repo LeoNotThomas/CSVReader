@@ -77,7 +77,7 @@ struct CSVData {
 }
 
 class MapCSVToData {
-    static func excecute(csvArray: [String], pageSize: Int) -> CSVData {
+    static func excecute(csvArray: [String], pageSize: Int = 0, addSequence: Bool = false) -> CSVData {
         var csvRows = [CSVRow]()
         for row in csvArray {
             let csvRow = CSVRow.excecute(row: row)

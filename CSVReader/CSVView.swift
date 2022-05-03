@@ -10,9 +10,9 @@ import SwiftUI
 struct CSVView: View {
     @State private var csvData = CSVDataSource().data
     private let pageEntrys = 3
-    @State var page: Int
-    let entryFont = UIFont.systemFont(ofSize: 20)
-    var pages: Int {
+    private var page: Int
+    private let entryFont = UIFont.systemFont(ofSize: 20)
+    private var pages: Int {
         return Int(ceil(Double((csvData?.rowCount ?? 0)/pageEntrys)))
     }
     

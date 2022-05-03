@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PagePicker: View {
     @State private var selectPage: Int
-    var currentPage: Int
-    var pages: Int
-    var availablePages: [Int] {
+    private var currentPage: Int
+    private var pages: Int
+    private var availablePages: [Int] {
         var availablePages = [Int]()
         for i in 0...pages {
             if i != currentPage {

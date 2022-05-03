@@ -12,6 +12,7 @@ struct CSVView: View {
     private let pageEntrys = 3
     @State var page: Int
     @State var selectPage = 1
+    let entryFont = UIFont.systemFont(ofSize: 20)
     var pages: [Int] {
         var pages = [Int]()
         let count = Int(ceil(Double((csvData?.rowCount ?? 0)/pageEntrys)))
@@ -28,9 +29,9 @@ struct CSVView: View {
         guard let count = csvData?.columnsCount else {
             return grid
         }
-        for i in 0...count - 1 {
-            
-        }
+//        for i in 0...count - 1 {
+//            
+//        }
         return grid
     }
     
@@ -43,6 +44,7 @@ struct CSVView: View {
                             GeometryReader { geo in
                                 Text(text)
                                     .background(.blue)
+                                    .font(Font(entryFont as CTFont))
                             }
                             .background(.red)
                         }

@@ -20,6 +20,7 @@
 		2142E101280451E400C9E9AB /* persons.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2142E100280451E400C9E9AB /* persons.csv */; };
 		2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1022805631200C9E9AB /* CSVDataSource.swift */; };
 		2142E1052807455C00C9E9AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1042807455C00C9E9AB /* MainView.swift */; };
+		3325FA9B28212AF600F46D68 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325FA9A28212AF600F46D68 /* String+Size.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		2142E100280451E400C9E9AB /* persons.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = persons.csv; sourceTree = "<group>"; };
 		2142E1022805631200C9E9AB /* CSVDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataSource.swift; sourceTree = "<group>"; };
 		2142E1042807455C00C9E9AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3325FA9A28212AF600F46D68 /* String+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		2142E0CA2802B6DD00C9E9AB /* CSVReader */ = {
 			isa = PBXGroup;
 			children = (
+				3325FA99282129DF00F46D68 /* Helper */,
 				2142E0F8280434AA00C9E9AB /* Facade */,
 				2142E0F72804344500C9E9AB /* Data */,
 				2142E0CB2802B6DD00C9E9AB /* CSVReaderApp.swift */,
@@ -167,6 +170,14 @@
 				2142E100280451E400C9E9AB /* persons.csv */,
 			);
 			path = TestData;
+			sourceTree = "<group>";
+		};
+		3325FA99282129DF00F46D68 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3325FA9A28212AF600F46D68 /* String+Size.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3325FA9B28212AF600F46D68 /* String+Size.swift in Sources */,
 				2142E0FA280434F000C9E9AB /* FileReader.swift in Sources */,
 				2142E1052807455C00C9E9AB /* MainView.swift in Sources */,
 				2142E0FC2804395500C9E9AB /* MapCSVToData.swift in Sources */,

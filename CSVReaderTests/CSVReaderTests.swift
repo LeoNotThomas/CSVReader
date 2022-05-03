@@ -43,13 +43,21 @@ class CSVReaderTests: XCTestCase {
         let csv = ["Name;Age;City",
                    "Peter;42;New York",
                    "Jaques;66;Paris",
-                   "Stephanie;47;Stockholm;Dänemark"
-        ]
+                   "Stephanie;47;Stockholm;Dänemark"]
+        
         let result = MapCSVToData.excecute(csvArray: csv)
-        XCTAssertTrue(result.maxCounts.count == 4, "Count Columns Incorrect")
-        let cmp = [9, 3, 9, 8]
-        for i in 0...result.maxCounts.count - 1 {
-            XCTAssertTrue(result.maxCounts[i] == cmp[i], "Wrong maximum found")
-        }
+        XCTAssertTrue(result.columnsCount == 4, "Count Columns Incorrect")
+    }
+    
+    func testWidthColums() {
+        var csv = ["111;111;111",
+                   "111;111;111"]
+        var csvData = MapCSVToData.excecute(csvArray: csv)
+        let result = csvData.widthColums(font: UIFont.systemFont(ofSize: 20))
+        csv = ["11111111111;111;111",
+               "111;11111111111;111"]
+        csvData = MapCSVToData.excecute(csvArray: csv)
+        let compareResult = csvData.widthColums(font: UIFont.systemFont(ofSize: 20))
+        XCTAssertFalse(result[0] >= compareResult[0] || result[1] > compareResult[1] || result[2] != compareResult[2], "Estimates of width wrong" )
     }
 }

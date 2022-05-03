@@ -6,28 +6,23 @@
 //
 
 import Foundation
+import UIKit
 
 struct CSVRow: Hashable {
     private var seperator = ";"
-    private (set) var columnCounts = [Int]()
     var columnCount: Int {
-        return columnCounts.count
+        return row.count
     }
     private (set) var row: [String] = [String]()
     
     static func excecute(row: String) -> CSVRow {
         var csvRow = CSVRow()
         csvRow.row = row.components(separatedBy: csvRow.seperator)
-        for value in csvRow.row {
-            csvRow.columnCounts.append(value.count)
-        }
         return csvRow
     }
 }
 
 struct CSVData {
-    private (set) var maxCounts = [Int]()
-    private (set) var maxStrings = [String]()
     private (set) var rows: [CSVRow]! {
         didSet {
             titleRow = rows[0]
@@ -43,19 +38,9 @@ struct CSVData {
     static func excecute(rows: [CSVRow], pageSize: Int) -> CSVData {
         var csvData = CSVData(pageSize: pageSize)
         csvData.rows = rows
-        for row in rows {
-            csvData.columnsCount = max(csvData.columnsCount, row.columnCount)
-            if csvData.maxCounts.isEmpty {
-                csvData.maxCounts = row.columnCounts
-                continue
-            }
-            for i in 0...row.columnCount - 1 {
-                if i == csvData.maxCounts.count {
-                    csvData.maxCounts.append(row.columnCounts[i])
-                    continue
-                }
-                csvData.maxCounts[i] = max(csvData.maxCounts[i], row.columnCounts[i])
-            }
+        csvData.columnsCount = csvData.titleRow.columnCount
+        for csvRow in rows {
+            csvData.columnsCount = max(csvData.columnsCount, csvRow.columnCount)
         }
         return csvData
     }
@@ -75,6 +60,29 @@ struct CSVData {
         page.insert(titleRow, at: 0)
         return page
     }
+    
+    func widthColums(font: UIFont) -> [CGFloat] {
+        var result = [CGFloat]()
+        var rows: [CSVRow] = rows
+        rows.insert(titleRow, at: 0)
+        for csvRow in rows {
+            var i = 0
+            for col in csvRow.row {
+                let length = col.width(font: font)
+                if result.count < csvRow.row.count {
+                    result.append(length)
+                    continue
+                }
+                if result[i] < length {
+                   result[i] = length
+                }
+                i += 1
+            }
+        }
+        return result
+    }
+    
+    
 }
 
 class MapCSVToData {

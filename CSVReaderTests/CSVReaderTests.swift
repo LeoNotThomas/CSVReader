@@ -53,11 +53,13 @@ class CSVReaderTests: XCTestCase {
         var csv = ["111;111;111",
                    "111;111;111"]
         var csvData = MapCSVToData.excecute(csvArray: csv)
-        let result = csvData.widthColums(font: UIFont.systemFont(ofSize: 20))
+        var calculator = CSVCalculater(rows: csvData.getPage(pageNumber: 0))
+        let result = calculator.widthColums(font: UIFont.systemFont(ofSize: 20))
         csv = ["11111111111;111;111",
                "111;11111111111;111"]
         csvData = MapCSVToData.excecute(csvArray: csv)
-        let compareResult = csvData.widthColums(font: UIFont.systemFont(ofSize: 20))
+        calculator = CSVCalculater(rows: csvData.getPage(pageNumber: 0))
+        let compareResult = calculator.widthColums(font: UIFont.systemFont(ofSize: 20))
         XCTAssertFalse(result[0] >= compareResult[0] || result[1] > compareResult[1] || result[2] != compareResult[2], "Estimates of width wrong" )
     }
 }

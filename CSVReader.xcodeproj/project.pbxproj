@@ -21,6 +21,7 @@
 		2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1022805631200C9E9AB /* CSVDataSource.swift */; };
 		2142E1052807455C00C9E9AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142E1042807455C00C9E9AB /* MainView.swift */; };
 		3325FA9B28212AF600F46D68 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325FA9A28212AF600F46D68 /* String+Size.swift */; };
+		3325FA9F2821962900F46D68 /* PagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325FA9E2821962900F46D68 /* PagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		2142E1022805631200C9E9AB /* CSVDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataSource.swift; sourceTree = "<group>"; };
 		2142E1042807455C00C9E9AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3325FA9A28212AF600F46D68 /* String+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
+		3325FA9E2821962900F46D68 /* PagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				2142E0F72804344500C9E9AB /* Data */,
 				2142E0CB2802B6DD00C9E9AB /* CSVReaderApp.swift */,
 				2142E0CD2802B6DD00C9E9AB /* CSVView.swift */,
+				3325FA9E2821962900F46D68 /* PagePicker.swift */,
 				2142E1042807455C00C9E9AB /* MainView.swift */,
 				2142E0CF2802B6DD00C9E9AB /* Assets.xcassets */,
 				2142E0D12802B6DD00C9E9AB /* Preview Content */,
@@ -318,6 +321,7 @@
 				2142E0FC2804395500C9E9AB /* MapCSVToData.swift in Sources */,
 				2142E0CE2802B6DD00C9E9AB /* CSVView.swift in Sources */,
 				2142E1032805631200C9E9AB /* CSVDataSource.swift in Sources */,
+				3325FA9F2821962900F46D68 /* PagePicker.swift in Sources */,
 				2142E0CC2802B6DD00C9E9AB /* CSVReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

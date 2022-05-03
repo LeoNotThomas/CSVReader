@@ -11,27 +11,19 @@ struct CSVView: View {
     @State private var csvData = CSVDataSource().data
     private let pageEntrys = 3
     @State var page: Int
-    @State var selectPage = 1
     let entryFont = UIFont.systemFont(ofSize: 20)
-    var pages: [Int] {
-        var pages = [Int]()
-        let count = Int(ceil(Double((csvData?.rowCount ?? 0)/pageEntrys)))
-        for i in 0...count {
-            if i != page {
-                pages.append(i)
-            }
-        }
-        return pages
+    var pages: Int {
+        return Int(ceil(Double((csvData?.rowCount ?? 0)/pageEntrys)))
     }
     
-    var columns: [GridItem] {
-        let grid = [GridItem]()
-        guard let count = csvData?.columnsCount else {
-            return grid
+    func columns(page: [CSVRow]) -> [GridItem] {
+        var grid = [GridItem]()
+        let calculator = CSVCalculater(rows: page)
+        let widthCols = calculator.widthColums(font: entryFont)
+        for i in 0...widthCols.count - 1 {
+            let item = GridItem(.fixed(widthCols[i]))
+            grid.append(item)
         }
-//        for i in 0...count - 1 {
-//            
-//        }
         return grid
     }
     
@@ -39,29 +31,17 @@ struct CSVView: View {
         List {
             if let rows = csvData?.getPage(pageNumber: page) {
                 ForEach(rows, id: \.self) { csvRow in
-                    HStack(alignment: .bottom, spacing: 0) {
+                    LazyVGrid(columns: columns(page: rows)) {
                         ForEach(csvRow.row, id: \.self) { text in
-                            GeometryReader { geo in
-                                Text(text)
-                                    .background(.blue)
-                                    .font(Font(entryFont as CTFont))
-                            }
-                            .background(.red)
+                            Text(text)
+                                .font(Font(entryFont as CTFont))
                         }
                     }
-                    .background(.orange)
                 }
-                NavigationLink(destination: CSVView(page: selectPage)) {
-                    Picker("Choose Page", selection: $selectPage) {
-                        ForEach(pages, id: \.self) {
-                            Text("\($0)")
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                }
+                PagePicker(currentPage: page, pages: pages)
             }
         }
-        .navigationTitle("Page: \(page)")
+        .navigationTitle("Page: \(page + 1)/\(pages + 1)")
         .padding()
     }
     

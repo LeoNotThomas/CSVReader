@@ -22,6 +22,34 @@ struct CSVRow: Hashable {
     }
 }
 
+class CSVCalculater {
+    let rows: [CSVRow]
+    
+    init(rows: [CSVRow]) {
+        self.rows = rows
+    }
+    
+    func widthColums(font: UIFont) -> [CGFloat] {
+        var result = [CGFloat]()
+        let rows: [CSVRow] = rows
+        for csvRow in rows {
+            var i = 0
+            for col in csvRow.row {
+                let length = col.width(font: font)
+                if result.count < csvRow.row.count {
+                    result.append(length)
+                    continue
+                }
+                if result[i] < length {
+                   result[i] = length
+                }
+                i += 1
+            }
+        }
+        return result
+    }
+}
+
 struct CSVData {
     private (set) var rows: [CSVRow]! {
         didSet {
@@ -45,7 +73,7 @@ struct CSVData {
         return csvData
     }
     
-    func getPage(pageNumber: Int) -> [CSVRow] {
+    func getPage(pageNumber: Int, titleFirst: Bool = true) -> [CSVRow] {
         var page = [CSVRow]()
         guard !rows.isEmpty else {
             return rows
@@ -57,36 +85,15 @@ struct CSVData {
                 break
             }
         }
-        page.insert(titleRow, at: 0)
+        if titleFirst {
+            page.insert(titleRow, at: 0)
+        }
         return page
     }
-    
-    func widthColums(font: UIFont) -> [CGFloat] {
-        var result = [CGFloat]()
-        var rows: [CSVRow] = rows
-        rows.insert(titleRow, at: 0)
-        for csvRow in rows {
-            var i = 0
-            for col in csvRow.row {
-                let length = col.width(font: font)
-                if result.count < csvRow.row.count {
-                    result.append(length)
-                    continue
-                }
-                if result[i] < length {
-                   result[i] = length
-                }
-                i += 1
-            }
-        }
-        return result
-    }
-    
-    
 }
 
 class MapCSVToData {
-    static func excecute(csvArray: [String], pageSize: Int = 0, addSequence: Bool = false) -> CSVData {
+    static func excecute(csvArray: [String], pageSize: Int = 1) -> CSVData {
         var csvRows = [CSVRow]()
         for row in csvArray {
             let csvRow = CSVRow.excecute(row: row)

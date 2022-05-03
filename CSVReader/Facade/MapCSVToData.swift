@@ -27,6 +27,7 @@ struct CSVRow: Hashable {
 
 struct CSVData {
     private (set) var maxCounts = [Int]()
+    private (set) var maxStrings = [String]()
     private (set) var rows: [CSVRow]! {
         didSet {
             titleRow = rows[0]

@@ -22,6 +22,18 @@ struct CSVView: View {
         }
         return pages
     }
+    
+    var columns: [GridItem] {
+        let grid = [GridItem]()
+        guard let count = csvData?.columnsCount else {
+            return grid
+        }
+        for i in 0...count - 1 {
+            
+        }
+        return grid
+    }
+    
     var body: some View {
         List {
             if let rows = csvData?.getPage(pageNumber: page) {
@@ -35,6 +47,7 @@ struct CSVView: View {
                             .background(.red)
                         }
                     }
+                    .background(.orange)
                 }
                 NavigationLink(destination: CSVView(page: selectPage)) {
                     Picker("Choose Page", selection: $selectPage) {

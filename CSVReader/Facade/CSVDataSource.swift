@@ -14,7 +14,7 @@ class CSVDataSource {
             guard let fileContent = try? FileReader.excecute(file: path) else {
                 return
             }
-            data = MapCSVToData.excecute(csvArray: fileContent, pageSize: 3)
+            data = MapCSVToData.excecute(csvArray: fileContent, pageSize: 3, addLeadingNo: true)
         }
     }
 }

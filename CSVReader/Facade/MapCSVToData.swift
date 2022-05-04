@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct CSVRow: Hashable {
-    private var seperator = ";"
+    fileprivate static var seperator = ";"
     var columnCount: Int {
         return row.count
     }
@@ -17,7 +17,7 @@ struct CSVRow: Hashable {
     
     static func excecute(row: String) -> CSVRow {
         var csvRow = CSVRow()
-        csvRow.row = row.components(separatedBy: csvRow.seperator)
+        csvRow.row = row.components(separatedBy: CSVRow.seperator)
         return csvRow
     }
 }
@@ -93,12 +93,24 @@ struct CSVData {
 }
 
 class MapCSVToData {
-    static func excecute(csvArray: [String], pageSize: Int = 1) -> CSVData {
+    static func excecute(csvArray: [String], pageSize: Int = 1, addLeadingNo: Bool = false) -> CSVData {
         var csvRows = [CSVRow]()
-        for row in csvArray {
+        for i in 0...csvArray.count - 1 {
+            var row = csvArray[i]
+            if addLeadingNo {
+                row = MapCSVToData.addLeading(to: row, add: i)
+            }
             let csvRow = CSVRow.excecute(row: row)
             csvRows.append(csvRow)
         }
         return CSVData.excecute(rows: csvRows, pageSize: pageSize)
+    }
+    
+    static func addLeading(to: String, add: Int) -> String {
+        var lead = String("\(add).")
+        if add == 0 {
+            lead = "No."
+        }
+        return lead + CSVRow.seperator + to
     }
 }

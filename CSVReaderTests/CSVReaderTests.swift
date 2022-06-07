@@ -24,7 +24,7 @@ class CSVReaderTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+        
     func testInvalidFile() {
         let bundle = Bundle(for: type(of: self))
         let url = bundle.url(forResource: "persons", withExtension: "txt")

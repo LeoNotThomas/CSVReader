@@ -25,13 +25,18 @@ class CSVReaderTests: XCTestCase {
         }
     }
     
+    func testInvalidFile() {
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "persons", withExtension: "txt")
+        let result = FileReader.excecute(file: url!)
+        XCTAssertTrue(result.error as? CSVError == CSVError.invalidFile, "File is valid")
+    }
+    
     func testReadCSV() {
-        let path = Bundle(for: type(of: self)).path(forResource: "persons", ofType: "csv")
-        guard let result = try? FileReader.excecute(file: path!) else {
-            XCTAssertTrue(false, "Can't read data.")
-            return
-        }
-        XCTAssertTrue(result.count == 8, "Wrong Count FileReader")
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "persons", withExtension: "csv")
+        let result = FileReader.excecute(file: url!)
+        XCTAssertTrue(result.data?.count == 8, "Wrong Count FileReader")
     }
     
     func testCsvRow() {

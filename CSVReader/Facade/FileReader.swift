@@ -7,21 +7,30 @@
 
 import Foundation
 
-enum CommonError: Error {
-    case readError
+enum CSVError: Error {
+    case reading
+    case invalidFile
 }
+typealias FileReaderResult = (data: [String]?, error: Error?)
 
 class FileReader {
-    static func excecute(file: String) throws -> [String]? {
+    static func excecute(file: URL) -> FileReaderResult {
         do {
-            let content = try String(contentsOfFile: file)
+            try checkFile(url: file)
+            let content = try String(contentsOf: file)
             let parsedCSV: [String] = content.components(
                 separatedBy: "\n"
             ).map{ $0.components(separatedBy: ",")[0] }
-              return parsedCSV
+              return FileReaderResult(parsedCSV, nil)
             }
         catch {
-            throw CommonError.readError
+            return FileReaderResult(nil, error)
+        }
+    }
+    
+    internal static func checkFile(url: URL) throws {
+        if url.pathExtension != "csv" {
+            throw CSVError.invalidFile
         }
     }
 }

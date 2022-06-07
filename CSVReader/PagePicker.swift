@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PagePicker: View {
     @State private var selectPage: Int
+    private var source: CSVDataSource
     private var currentPage: Int
     private var pages: Int
     private var availablePages: [Int] {
@@ -22,7 +23,7 @@ struct PagePicker: View {
     }
     var body: some View {
         if currentPage != selectPage {
-            NavigationLink(destination: CSVView(page: selectPage)) {
+            NavigationLink(destination: CSVView(page: selectPage, source: source)) {
                 pickerView
             }
         } else {
@@ -39,9 +40,10 @@ struct PagePicker: View {
         .pickerStyle(.segmented)
     }
     
-    init(currentPage: Int, pages: Int) {
+    init(currentPage: Int, pages: Int, source: CSVDataSource) {
         self.currentPage = currentPage
         self.selectPage = currentPage
         self.pages = pages
+        self.source = source
     }
 }

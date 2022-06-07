@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct CSVView: View {
-    @State private var csvData = CSVDataSource().data
-    private let pageEntrys = 3
+    @State private var source: CSVDataSource
+    private var pageEntrys: Int {
+        return source.data.pageSize
+    }
     private var page: Int
     private let entryFont = UIFont.systemFont(ofSize: 20)
     private var pages: Int {
-        return Int(ceil(Double((csvData?.rowCount ?? 0)/pageEntrys)))
+        return Int(ceil(Double((source.data.rowCount)/pageEntrys)))
     }
     
     func columns(page: [CSVRow]) -> [GridItem] {
@@ -29,7 +31,7 @@ struct CSVView: View {
     
     var body: some View {
         List {
-            if let rows = csvData?.getPage(pageNumber: page) {
+            if let rows = source.data.getPage(pageNumber: page) {
                 ForEach(rows, id: \.self) { csvRow in
                     LazyVGrid(columns: columns(page: rows)) {
                         ForEach(csvRow.row, id: \.self) { text in
@@ -38,20 +40,15 @@ struct CSVView: View {
                         }
                     }
                 }
-                PagePicker(currentPage: page, pages: pages)
+                PagePicker(currentPage: page, pages: pages, source: source)
             }
         }
         .navigationTitle("Page: \(page + 1)/\(pages + 1)")
         .padding()
     }
     
-    init(page: Int = 0) {
+    init(page: Int = 0, source: CSVDataSource) {
         self.page = page
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CSVView()
+        self.source = source
     }
 }

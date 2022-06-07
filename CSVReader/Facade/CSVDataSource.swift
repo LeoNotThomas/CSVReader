@@ -9,12 +9,13 @@ import Foundation
 
 class CSVDataSource {
     var data: CSVData!
-    init() {
-        if let path = Bundle(for: type(of: self)).path(forResource: "persons", ofType: "csv") {
-            guard let fileContent = try? FileReader.excecute(file: path) else {
-                return
-            }
-            data = MapCSVToData.excecute(csvArray: fileContent, pageSize: 3, addLeadingNo: true)
+    var error: Error?
+    init(path: URL, pageSize: Int = 3) {
+        let result = FileReader.excecute(file: path)
+        guard let fileContent = result.data else {
+            error = result.error
+            return
         }
+        data = MapCSVToData.excecute(csvArray: fileContent, pageSize: pageSize, addLeadingNo: true)
     }
 }

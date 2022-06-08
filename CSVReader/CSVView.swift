@@ -45,6 +45,7 @@ struct CSVView: View {
         }
         .navigationTitle("Page: \(page + 1)/\(pages + 1)")
         .padding()
+        .navigationBarItems(trailing: NavigationLink("Sort", destination: SelectSortView()))
     }
     
     init(page: Int = 0, source: CSVDataSource) {

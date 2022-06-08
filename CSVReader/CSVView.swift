@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CSVView: View {
     @State private var source: CSVDataSource
+    @State private var sortName = "No."
     private var pageEntrys: Int {
         return source.data.pageSize
     }
@@ -31,7 +32,7 @@ struct CSVView: View {
     
     var body: some View {
         List {
-            if let rows = source.data.getPage(pageNumber: page).csvRows {
+            if let rows = source.data.getPage(pageNumber: page, sortByTitle: sortName).csvRows {
                 ForEach(rows, id: \.self) { csvRow in
                     LazyVGrid(columns: columns(page: rows)) {
                         ForEach(csvRow.row, id: \.self) { text in
@@ -45,7 +46,11 @@ struct CSVView: View {
         }
         .navigationTitle("Page: \(page + 1)/\(pages + 1)")
         .padding()
-        .navigationBarItems(trailing: NavigationLink("Sort", destination: SelectSortView()))
+        .navigationBarItems(trailing: Picker("Sorted by: " + sortName , selection: $sortName, content: {
+            ForEach(source.data.titleRow.row, id: \.self) {
+                Text($0)
+            }
+        }))
     }
     
     init(page: Int = 0, source: CSVDataSource) {

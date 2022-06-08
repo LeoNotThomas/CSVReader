@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct SelectSortView: View {
+    @State var selection: String
+    var titleRow: CSVRow
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Picker("Please choose a color", selection: $selection) {
+            ForEach(titleRow.row, id: \.self) {
+                Text($0)
+            }
+        }
     }
-}
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectSortView()
+    
+    init(titleRow: CSVRow) {
+        self.titleRow = titleRow
+        selection = titleRow.row[0]
     }
 }

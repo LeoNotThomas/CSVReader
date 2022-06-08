@@ -31,7 +31,7 @@ struct CSVView: View {
     
     var body: some View {
         List {
-            if let rows = source.data.getPage(pageNumber: page) {
+            if let rows = source.data.getPage(pageNumber: page).csvRows {
                 ForEach(rows, id: \.self) { csvRow in
                     LazyVGrid(columns: columns(page: rows)) {
                         ForEach(csvRow.row, id: \.self) { text in

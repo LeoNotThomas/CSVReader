@@ -10,6 +10,8 @@ import Foundation
 enum CSVError: Error {
     case reading
     case invalidFile
+    case wrongInput
+    case rowNotFound
 }
 typealias FileReaderResult = (data: [String]?, error: Error?)
 

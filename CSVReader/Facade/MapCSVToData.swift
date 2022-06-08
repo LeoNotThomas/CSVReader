@@ -8,7 +8,24 @@
 import Foundation
 import UIKit
 
-struct CSVRow: Hashable {
+struct CSVRow: Hashable, Comparable {
+    var compareIndex: Int = 0
+    static func < (lhs: CSVRow, rhs: CSVRow) -> Bool {
+        return lhs.row[lhs.compareIndex] < rhs.row[rhs.compareIndex]
+    }
+    
+    static func == (lhs: CSVRow, rhs: CSVRow) -> Bool {
+        if lhs.columnCount != rhs.columnCount {
+            return false
+        }
+        for i in 0...lhs.columnCount - 1 {
+            if lhs.row[i] != rhs.row[i] {
+                return false
+            }
+        }
+        return true
+    }
+    
     fileprivate static var seperator = ";"
     var columnCount: Int {
         return row.count
@@ -19,6 +36,10 @@ struct CSVRow: Hashable {
         var csvRow = CSVRow()
         csvRow.row = row.components(separatedBy: CSVRow.seperator)
         return csvRow
+    }
+    
+    func index(of: String) -> Int? {
+        return row.firstIndex(of: of)
     }
 }
 
@@ -50,6 +71,8 @@ class CSVCalculater {
     }
 }
 
+typealias CSVPageResult = (csvRows: [CSVRow], error: Error?)
+
 struct CSVData {
     private (set) var rows: [CSVRow]! {
         didSet {
@@ -73,10 +96,10 @@ struct CSVData {
         return csvData
     }
     
-    func getPage(pageNumber: Int, titleFirst: Bool = true) -> [CSVRow] {
+    func getPage(pageNumber: Int, titleFirst: Bool = true, sortByTitle: String? = nil) -> CSVPageResult {
         var page = [CSVRow]()
         guard !rows.isEmpty else {
-            return rows
+            return CSVPageResult(rows, nil)
         }
         for i in (pageNumber * pageSize)...(pageNumber * pageSize) + pageSize - 1 {
             let row = rows[i]
@@ -85,15 +108,42 @@ struct CSVData {
                 break
             }
         }
+        if let sort = sortByTitle {
+            let result = sortPage(titleRow: sort, page: page)
+            page = result.csvRows
+        }
         if titleFirst {
             page.insert(titleRow, at: 0)
         }
-        return page
+        return CSVPageResult(page, nil)
+    }
+    
+    private func sortPage(index: Int, page: [CSVRow]) -> CSVPageResult {
+        var sortedPage = [CSVRow]()
+        for var row in page {
+            row.compareIndex = index
+            sortedPage.append(row)
+        }
+        sortedPage.sort()
+        return CSVPageResult(sortedPage, nil)
+    }
+    
+    private func sortPage(titleRow: String, page: [CSVRow]) -> CSVPageResult {
+        guard let rowIndex = self.titleRow.index(of: titleRow) else {
+            return CSVPageResult(page, CSVError.rowNotFound)
+        }
+        return sortPage(index: rowIndex, page: page)
     }
 }
 
+typealias CSVDataResult = (data: CSVData?, error: Error?)
+
 class MapCSVToData {
-    static func excecute(csvArray: [String], pageSize: Int = 1, addLeadingNo: Bool = false) -> CSVData {
+    
+    static func excecute(csvArray: [String], pageSize: Int = 1, addLeadingNo: Bool = false) -> CSVDataResult {
+        if pageSize <= 0 {
+            return CSVDataResult(nil, CSVError.wrongInput)
+        }
         var csvRows = [CSVRow]()
         for i in 0...csvArray.count - 1 {
             var row = csvArray[i]
@@ -103,7 +153,8 @@ class MapCSVToData {
             let csvRow = CSVRow.excecute(row: row)
             csvRows.append(csvRow)
         }
-        return CSVData.excecute(rows: csvRows, pageSize: pageSize)
+        let data = CSVData.excecute(rows: csvRows, pageSize: pageSize)
+        return CSVDataResult(data, nil)
     }
     
     static func addLeading(to: String, add: Int) -> String {

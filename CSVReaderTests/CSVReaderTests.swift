@@ -46,7 +46,7 @@ class CSVReaderTests: XCTestCase {
                    "Stephanie;47;Stockholm;Dänemark"]
         
         let result = MapCSVToData.excecute(csvArray: csv, pageSize: 0)
-        XCTAssertTrue(result.error as? CSVError == CSVError.wrongInput, "Count Columns Incorrect")
+        XCTAssertTrue(result.error as? CSVError == CSVError.wrongPageSize, "Count Columns Incorrect")
     }
     
     func testCsvRow() {

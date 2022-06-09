@@ -37,7 +37,7 @@ struct PagePicker: View {
                 Text("\($0 + 1)")
             }
         }
-        .pickerStyle(.segmented)
+        .pickerStyle(.menu)
     }
     
     init(currentPage: Int, pages: Int, source: CSVDataSource) {

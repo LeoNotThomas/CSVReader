@@ -142,7 +142,7 @@ class MapCSVToData {
     
     static func excecute(csvArray: [String], pageSize: Int = 1, addLeadingNo: Bool = false) -> CSVDataResult {
         if pageSize <= 0 {
-            return CSVDataResult(nil, CSVError.wrongInput)
+            return CSVDataResult(nil, CSVError.wrongPageSize)
         }
         var csvRows = [CSVRow]()
         for i in 0...csvArray.count - 1 {
